@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>个人信息</title>
+	<style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            width: 100%;
+            height: 800px;
+            background-image: linear-gradient(to top right,rgba(4,149,245,0.5),rgba(224,73,13,0.4));
+        }
+        .box {
+            width: 400px;
+            padding: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 24px;
+            background: #191919;
+            text-align: center;
+            opacity: 0.9;
+        }
+        .box h3{
+            color: white;
+            margin-bottom: 3px;
+        }
+        
+        
+        .box input[type = "text"], .box input[type = "password"]{
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid royalblue;
+            padding: 10px 10px;
+            width: 200px;
+            outline: none;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25s;
+
+        }
+        .box input[type = "tel"], .box input[type = "email"]{
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid royalblue;
+            padding: 10px 10px;
+            width: 200px;
+            outline: none;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25s;
+
+        }
+        .box input[type = "submit"]{
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid yellowgreen;
+            padding: 10px 10px;
+            width: 200px;
+            outline: none;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25s;
+
+        }
+        .box input[type = "text"]:focus {
+            border-color: tomato;
+            width: 220px;
+        }
+        .box input[type = "password"]:focus {
+            border-color: tomato;
+            width: 220px;
+        }
+        .box input[type = "tel"]:focus {
+            border-color: tomato;
+            width: 220px;
+        }
+        .box input[type = "email"]:focus {
+            border-color: tomato;
+            width: 220px;
+        }
+        .box input[type = "submit"]:hover {
+            background-color: rgb(47, 144, 255);
+        }
+        .box .imsg {
+            color: honeydew;
+        }
+    </style>
+        
+	<script>
+    </script>
+</head>
+
+<body>
+    <form action="" class="box" method="POST" onsubmit="return formValidcheckform()">
+        <h3>奇妙活力影城</h3>
+        <input type="text" name="" placeholder="用户名" id="user" onblur="formValid.checkusername()" > <span class = "imsg" id = "userInfo">请输入用户名</span>
+        <input type="password" name="" placeholder="密码" id="pwd" onblur="formValid.checkpwdname()" >  <span class = "imsg" id = "pwdInfo">请输入用户密码</span>
+        <input type="tel" name="" placeholder="电话号码" id="tel" onblur="formValid.checktelname()" >  <span class = "imsg" id = "telInfo">请输入用户手机号</span>
+        <input type="email" name="" placeholder="电子邮件" id="email" onblur="formValid.checkemailname()" >  <span class = "imsg" id = "emailInfo">请输入用户电子邮箱</span>
+        <input type="submit" value="注册">
+    </form>
+    <script>
+        //获取用户名，密码，手机号，邮箱
+        var user = document.getElementById("user");
+        var pwd = document.getElementById("pwd");
+        var tel = document.getElementById("tel");
+        var email = document.getElementById("email");
+        // 获取提示信息
+        var userInfo = document.getElementById("userInfo");
+        var pwdInfo = document.getElementById("pwdInfo");
+        var telInfo = document.getElementById("telInfo");
+        var emailInfo = document.getElementById("emailInfo");
+        // 声明一个验证对象 对象里面存储检验方法
+        var formValid = {
+            //用户名验证 不为空 1到6字符
+            checkusername:function(){
+                // 正则：用户名在1—6字符
+                var patrn = /^[a-zA-Z]{1,6}$/;
+                if(user.value.length == 0) {
+                    // 改变提示消息
+                    userInfo.innerHTML = "用户名不能为空";
+                    userInfo.style.color = "orange";
+                    return false;
+                }
+                if(!patrn.test(user.value)){
+                    userInfo.innerHTML = "用户名不合法";
+                    userInfo.style.color = "orange";
+                    return false;
+                }
+                else{
+                    userInfo.innerHTML = "ok";
+                    userInfo.style.color = "green";
+                    return true;
+                }
+            },
+            checkpwdname:function(){
+                // 正则：密码在1—6字符
+                var patrn = /^[a-zA-Z]{1,6}$/;
+                if(pwd.value.length == 0) {
+                    // 改变提示消息
+                    pwdInfo.innerHTML = "密码不能为空";
+                    pwdInfo.style.color = "orange";
+                    return false;
+                }
+                if(!patrn.test(pwd.value)){
+                    pwdInfo.innerHTML = "密码不合法";
+                    pwdInfo.style.color = "orange";
+                    return false;
+                }
+                else{
+                    pwdInfo.innerHTML = "ok";
+                    pwdInfo.style.color = "green";
+                    return true;
+                }
+            },
+            checktelname:function(){
+                // 正则：
+                var patrn = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
+                if(tel.value.length == 0) {
+                    // 改变提示消息
+                    telInfo.innerHTML = "电话号码不能为空";
+                    telInfo.style.color = "orange";
+                    return false;
+                }
+                if(!patrn.test(tel.value)){
+                    telInfo.innerHTML = "电话号码不合法";
+                    telInfo.style.color = "orange";
+                    return false;
+                }
+                else{
+                    telInfo.innerHTML = "ok";
+                    telInfo.style.color = "green";
+                    return true;
+                }
+            },
+            checkemailname:function(){
+                // 
+                var patrn = '[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+';
+                if(email.value.length == 0) {
+                    // 改变提示消息
+                    emailInfo.innerHTML = "邮箱不能为空";
+                    emailInfo.style.color = "orange";
+                    return false;
+                }
+                if(!patrn.test(email.value)){
+                    emailInfo.innerHTML = "邮箱不合法";
+                    emailInfo.style.color = "orange";
+                    return false;
+                }
+                else{
+                    eamilInfo.innerHTML = "ok";
+                    emilInfo.style.color = "green";
+                    return true;
+                }
+            },
+            checkform:function(){
+                var userRes = this.checkusername();
+                var pwdRes = this.checkpwdname();
+                var telRes = this.checktelname();
+                var emailRes = this.checkemailname();
+                return userRes && pwdRes && telRes && emailRes;
+            }
+        }
+    
+    </script>
+</body>
+</html>
